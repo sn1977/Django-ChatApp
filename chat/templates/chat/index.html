@@ -37,9 +37,10 @@
     <main class="mdl-layout__content">
       <div class="page-content">
 
-        <form action="#">
-            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
-              <input class="mdl-textfield__input" type="text" id="sample3">
+        <form action="/chat/" method="post">
+            {% csrf_token %} <!-- Token wir d generiert! -->
+            <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"> 
+              <input class="mdl-textfield__input" name="textmessage" type="text" id="sample3">
               <label class="mdl-textfield__label" for="sample3">Text...</label>
             </div>
             <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
