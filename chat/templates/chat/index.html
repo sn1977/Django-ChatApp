@@ -6,6 +6,10 @@
     .page-content {
         padding: 100px;
     }
+ 
+    .color-gray {
+      color: rgba(0, 0, 0, 0.4);
+    }
 </style>
 
 <!-- Always shows a header, even in smaller screens. -->
@@ -37,8 +41,14 @@
     <main class="mdl-layout__content">
       <div class="page-content">
 
+        {% for message in messages %}
+        <div>
+          <span class="color-gray"> [{{ message.created_at }}]</span> {{ message.author.last_name }}: <i>{{ message.text }}</i>
+        </div>
+        {% endfor %}
+
         <form action="/chat/" method="post">
-            {% csrf_token %} <!-- Token wir d generiert! -->
+            {% csrf_token %} <!-- Token wir generiert! -->
             <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label"> 
               <input class="mdl-textfield__input" name="textmessage" type="text" id="sample3">
               <label class="mdl-textfield__label" for="sample3">Text...</label>
@@ -48,7 +58,6 @@
               </button>
           </form>
           
-        
       </div>
     </main>
   </div>
