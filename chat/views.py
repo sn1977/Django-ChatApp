@@ -1,8 +1,9 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from .models import Chat, Message
 from django.contrib.auth import authenticate, login
 from django.contrib.auth.decorators import login_required
+from django.contrib.auth.models import User
 
 
 @login_required(login_url="/login/")
@@ -28,7 +29,33 @@ def login_view(request):
         )
         if user:
             login(request, user)
-            return HttpResponseRedirect(request.POST.get('redirect'))
+            return HttpResponseRedirect(request.POST.get("redirect"))
         else:
-            return render(request, "auth/login.html", {"wrongPassword": True, 'redirect': redirect})
-    return render(request, 'auth/login.html', {'redirect': redirect})
+            return render(
+                request,
+                "auth/login.html",
+                {"wrongPassword": True, "redirect": redirect},
+            )
+    return render(request, "auth/login.html", {"redirect": redirect})
+
+
+def register_view(request):
+    if request.method == "POST":
+        username = request.POST.get("username")
+        password = request.POST.get("password")
+        # Hier kannst du weitere Felder aus dem Formular abrufen und dem Benutzer zuweisen
+
+        # Benutzer erstellen und in die Datenbank speichern
+        user = User.objects.create_user(username, password=password)
+        # Weitere Benutzerattribute setzen, falls erforderlich
+        # user.first_name = "John"
+        # user.last_name = "Doe"
+        # user.email = "john@example.com"
+        # user.save()
+
+        # Optional: Weiterleitung nach erfolgreicher Registrierung
+        return redirect('login/')  # Zum Beispiel zur Login-Seite
+
+    # GET-Anfrage: Das Registrierungsformular anzeigen
+    return render(request, "auth/register.html")
+

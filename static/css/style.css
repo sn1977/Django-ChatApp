@@ -9,3 +9,7 @@
 .mdl-textfield {
     display: flex;
 }
+
+.pt-24 {
+    padding-top: 24px;
+}

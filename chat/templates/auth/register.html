@@ -1,13 +1,13 @@
 {% extends "base.html" %}
 {% block content %}
 
-<h1>Login</h1>
+<h1>Register a New User</h1>
 
-{% if wrongPassword %}
+{% comment %} {% if wrongPassword %}
 <p>Benutzername oder Passwort ist falsch!</p>
-{% endif %}
+{% endif %} {% endcomment %}
 
-<form method="post">
+<form method="post" >
     {% csrf_token %}
     <input type="hidden" name="redirect" value="{{ redirect }}">
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
@@ -22,15 +22,15 @@
     <!-- <div><input name="password" type="password"></div> -->
     <div>
         <button class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-        Login
+        Register
       </button>
     </div>
 </form>
-<div class="pt-24"><h5>If you are not registered User, please register here: </h5>
-    <div>
-      <a href="/register/" class="mdl-button mdl-js-button mdl-button--raised mdl-js-ripple-effect mdl-button--accent">
-        Register
-    </a>
-    </div>
-</div>
 {% endblock  %}
+
+{% comment %} <form action="/auth/register/" method="post">
+    {% csrf_token %}
+    {{ form }}
+    <button>Submit</button>
+</form>
+{% endblock  %} {% endcomment %}
