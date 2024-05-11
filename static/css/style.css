@@ -1,0 +1,11 @@
+.page-content {
+    padding: 100px;
+}
+
+.color-gray {
+    color: rgba(0, 0, 0, 0.4);
+}
+
+.mdl-textfield {
+    display: flex;
+}
