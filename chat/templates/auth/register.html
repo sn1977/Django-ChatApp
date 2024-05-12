@@ -7,7 +7,7 @@
 <p>Benutzername oder Passwort ist falsch!</p>
 {% endif %} {% endcomment %}
 
-<form method="post" >
+<form method="post" action="/register/">
     {% csrf_token %}
     <input type="hidden" name="redirect" value="{{ redirect }}">
     <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label">
